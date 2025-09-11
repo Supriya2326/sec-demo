@@ -31,6 +31,7 @@
     }
     header h1 {
       font-size: 2.8rem;
+      text-align: center;
       color: var(--primary);
       text-shadow: 0 0 15px var(--primary), 0 0 25px rgba(255,78,205,0.7);
       animation: flicker 2s infinite alternate;
@@ -40,14 +41,14 @@
       margin-top: 1rem;
       color: var(--accent);
       overflow: hidden;
-      border-right: 2px solid var(--accent);
+      border-right: 1px solid var(--accent);
       white-space: nowrap;
       width: 0;
-      animation: typing 4s steps(20) forwards, blink 0.7s infinite;
+      animation: typing 4s steps(60) forwards;
     }
     @keyframes typing {
-      from { width: 0; }
-      to { width: 15ch; }
+      from { width: 10; }
+      to { width: 50ch; }
     }
     @keyframes blink {
       50% { border-color: transparent; }
