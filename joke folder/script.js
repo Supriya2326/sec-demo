@@ -1,4 +1,3 @@
-// Fetches a random joke from the API
 async function getJoke() {
   try {
     const response = await fetch('https://official-joke-api.appspot.com/random_joke');
@@ -14,8 +13,6 @@ async function getJoke() {
     return null;
   }
 }
-
-// Displays the joke or an error message
 function displayJoke(jokeData) {
   const setupEl = document.getElementById('setup');
   const punchlineEl = document.getElementById('punchline');
@@ -30,8 +27,6 @@ function displayJoke(jokeData) {
     setupEl.classList.add('error');
   }
 }
-
-// Handles button click and coordinates fetching + displaying
 async function handleJoke() {
   const joke = await getJoke();
   displayJoke(joke);
