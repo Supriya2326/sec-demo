@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration - Essay Writing</title>
+    <style>
+        :root {
+            font-size: 16px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 40rem;
+            margin: 2rem auto;
+            background: #68e7e1;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+            padding: 2rem;
+            display: grid;
+            gap: 1.5rem;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1f56f;
+            border-radius: 0.3rem;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            background: #054488;
+            color: #a5e62c;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 0.3rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #95a8bd;
+        }
+        .success {
+            color: green;
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Registration - Essay Writing</h2>
+        <form id="registrationForm">
+            <div>
+                <label for="name">First Name</label>
+                <input type="text" id="name" name="name" required />
+            </div>
+            <div>
+                <label for="name">Last Name</label>
+                <input type="text" id="name" name="name" required />
+            </div>
+            <div>
+                <label for="college">College Name</label>
+                <input type="text" id="college" name="college" required />
+            </div>
+            <div>
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required />
+            </div>
+            <div>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required />
+            </div>
+            <div>
+                <label for="Branch">Branch</label>
+                <select id="Branch" name="Branch" required >
+                    <option value="Select Branch">Select Branch</option>
+                    <option value="Btech">CSE</option>
+                    <option value="Btech">EEE</option>
+                    <option value="Btech">CSM</option>
+                    <option value="Btech">ECE</option>
+                </select>
+            </div>
+            <div>
+                <label for="topic">Essay Topic</label>
+                <select id="topic" name="topic" required >
+                <option value="">Select topic</option>
+                <option value="Environment">Environment</option>
+                <option value="Technology">Technology</option>
+                <option value="Education">Education</option>
+                <option value="Health">Health</option>          
+                <option value="Other">Other</option>
+                </select>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <div id="message" class="success"></div>
+    </div>
+    <script>
+        // Simulate sending confirmation mail (for demo purposes)
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            document.getElementById('message').textContent =
+                `Thank you, ${name}! A confirmation mail has been sent to ${email}.`;
+            this.reset();
+        });
+    </script>
+</body>
+</html>
