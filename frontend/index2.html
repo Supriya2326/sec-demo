@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List with Complete & Delete</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    input[type="text"] {
+      padding: 5px;
+      font-size: 16px;
+    }
+    #new-task {
+      width: 250px;
+    }
+    #add-btn {
+      padding: 6px 10px;
+      font-size: 16px;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      padding: 8px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    li.completed span.task-text {
+      text-decoration: line-through;
+      color: gray;
+    }
+    .task-buttons {
+      margin-left: 10px;
+    }
+    .task-buttons button {
+      margin-left: 5px;
+      padding: 4px 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    li input[type="text"] {
+      width: 100%;
+      font-size: 1em;
+    }
+    .task-content {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>To-Do List</h2>
+  <input type="text" id="new-task" placeholder="Enter new task">
+  <button id="add-btn">Add</button>
+
+  <ul id="todo-list">
+    <!-- Example task (pre-added) -->
+    <li>
+      <span class="task-content">
+        <span class="task-text">Buy groceries</span>
+      </span>
+      <div class="task-buttons">
+        <button class="complete-btn">Complete</button>
+        <button class="delete-btn">Delete</button>
+      </div>
+    </li>
+  </ul>
+
+  <script>
+    $(document).ready(function () {
+
+      function createTaskItem(text) {
+        return `
+          <li>
+            <span class="task-content">
+              <span class="task-text">${text}</span>
+            </span>
+            <div class="task-buttons">
+              <button class="complete-btn">Complete</button>
+              <button class="delete-btn">Delete</button>
+            </div>
+          </li>
+        `;
+      }
+
+      // Add new task
+      $('#add-btn').click(function () {
+        const taskText = $('#new-task').val().trim();
+        if (taskText !== '') {
+          $('#todo-list').append(createTaskItem(taskText));
+          $('#new-task').val('');
+        }
+      });
+
+      $('#new-task').keydown(function (e) {
+        if (e.key === 'Enter') {
+          $('#add-btn').click();
+        }
+      });
+
+      // Delete task
+      $('#todo-list').on('click', '.delete-btn', function () {
+        $(this).closest('li').remove();
+      });
+
+      // Mark task as complete
+      $('#todo-list').on('click', '.complete-btn', function () {
+        $(this).closest('li').toggleClass('completed');
+      });
+
+      // Edit task on double-click
+      $('#todo-list').on('dblclick', '.task-text', function () {
+        const $span = $(this);
+        const text = $span.text();
+        const $input = $('<input type="text">').val(text);
+
+        $span.replaceWith($input);
+        $input.focus();
+
+        function saveEdit() {
+          const newText = $input.val().trim() || text;
+          $input.replaceWith(`<span class="task-text">${newText}</span>`);
+        }
+
+        $input.on('keydown', function (e) {
+          if (e.key === 'Enter') {
+            saveEdit();
+          }
+        });
+
+        $input.on('blur', function () {
+          saveEdit();
+        });
+      });
+
+    });
+  </script>
+
+</body>
+</html>
